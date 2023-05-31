@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         np = new NodePublisher(this, "");
         np.setAudioCodecParam(NodePublisher.NMC_CODEC_ID_AAC, NodePublisher.NMC_PROFILE_AUTO, 48000, 1, 64_000);
         np.setVideoOrientation(NodePublisher.VIDEO_ORIENTATION_PORTRAIT);
-        np.setVideoCodecParam(NodePublisher.NMC_CODEC_ID_H264, NodePublisher.NMC_PROFILE_AUTO, 720, 1280, 17, 2_000_000);
+        np.setVideoCodecParam(NodePublisher.NMC_CODEC_ID_H264, NodePublisher.NMC_PROFILE_H264_MAIN, 800, 1280, 17, 2_100_000);
         np.attachView(fl);
         np.openCamera(isFrontCamera);
         np.setVideoOrientation(Surface.ROTATION_0);
@@ -50,9 +50,23 @@ public class MainActivity extends AppCompatActivity {
         EditText rtmpInput = findViewById(R.id.rtmp_input);
 
         np.setOnNodePublisherEventListener((NodePublisher publisher, int event, String msg) -> {
+            System.out.println("listener msg ==============>" + msg + ", event =>" + event);
+            // connecting
+            if (event == 2000) {
 
+            }
+            // connect success
+            if (event == 2001) {
+            }
+            // connect err
+            if (event == 2002) {
+
+            }
+            // disconnect
+            if (event == 2004) {
+
+            }
         });
-
 
         // 取上次设置的rtmp地址
         String recordRtmpUrl = sp.getString("rtmp_url", "");

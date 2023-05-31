@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="2dp"
-            android:background="#664FA3"
+            android:background="@drawable/btn_select"
             android:backgroundTint="#664FA3"
             android:text="start"
             app:cornerRadius="24dp" />
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="2dp"
-            android:background="#664FA3"
+            android:background="@drawable/btn_select"
             android:backgroundTint="#664FA3"
             android:text="stop"
             app:cornerRadius="24dp" />
@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#664FA3"
+            android:background="@drawable/btn_select"
             android:backgroundTint="#664FA3"
             android:text="switch camera" />
     </LinearLayout>
