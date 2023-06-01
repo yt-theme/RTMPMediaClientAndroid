@@ -13,6 +13,7 @@ import android.view.Surface;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import cn.nodemedia.NodePublisher;
 
@@ -40,31 +41,33 @@ public class MainActivity extends AppCompatActivity {
         np = new NodePublisher(this, "");
         np.setAudioCodecParam(NodePublisher.NMC_CODEC_ID_AAC, NodePublisher.NMC_PROFILE_AUTO, 48000, 1, 64_000);
         np.setVideoOrientation(NodePublisher.VIDEO_ORIENTATION_PORTRAIT);
-        np.setVideoCodecParam(NodePublisher.NMC_CODEC_ID_H264, NodePublisher.NMC_PROFILE_H264_MAIN, 800, 1280, 17, 2_100_000);
+        np.setVideoCodecParam(NodePublisher.NMC_CODEC_ID_H264, NodePublisher.NMC_PROFILE_AUTO, 720, 1280, 17, 2_000_000);
         np.attachView(fl);
         np.openCamera(isFrontCamera);
         np.setVideoOrientation(Surface.ROTATION_0);
+
         Button publishBtn = findViewById(R.id.publish_btn);
         Button stopBtn = findViewById(R.id.stop_btn);
         Button switchCameraBtn = findViewById(R.id.switch_camera_btn);
         EditText rtmpInput = findViewById(R.id.rtmp_input);
+        TextView msgText = findViewById(R.id.msg_text);
 
         np.setOnNodePublisherEventListener((NodePublisher publisher, int event, String msg) -> {
-            System.out.println("listener msg ==============>" + msg + ", event =>" + event);
             // connecting
             if (event == 2000) {
-
+                msgText.setText("connecting");
             }
             // connect success
             if (event == 2001) {
+                msgText.setText("connect ok");
             }
             // connect err
             if (event == 2002) {
-
+                msgText.setText("connect err");
             }
             // disconnect
             if (event == 2004) {
-
+                msgText.setText("disconnect");
             }
         });
 
@@ -73,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         rtmpInput.setText(recordRtmpUrl);
 
         // 自动运行推流
-        autoStartRtmp(recordRtmpUrl);
+        // autoStartRtmp(recordRtmpUrl);
 
         // 按钮点击事件
         publishBtn.setOnClickListener((v) -> {

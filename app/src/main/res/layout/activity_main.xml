@@ -58,12 +58,22 @@
 
         <EditText
             android:id="@+id/rtmp_input"
-            android:layout_width="match_parent"
+            android:layout_width="293dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:hint="rtmp://"
             android:paddingLeft="5dp"
             android:paddingRight="5dp" />
+
+        <TextView
+            android:id="@+id/msg_text"
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="no action"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:lineHeight="50dp" />
 
     </LinearLayout>
 
@@ -77,6 +87,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0" >
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
