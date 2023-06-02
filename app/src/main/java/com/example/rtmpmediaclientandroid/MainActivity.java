@@ -53,21 +53,30 @@ public class MainActivity extends AppCompatActivity {
         TextView msgText = findViewById(R.id.msg_text);
 
         np.setOnNodePublisherEventListener((NodePublisher publisher, int event, String msg) -> {
-            // connecting
-            if (event == 2000) {
-                msgText.setText("connecting");
-            }
-            // connect success
-            if (event == 2001) {
-                msgText.setText("connect ok");
-            }
-            // connect err
-            if (event == 2002) {
-                msgText.setText("connect err");
-            }
-            // disconnect
-            if (event == 2004) {
-                msgText.setText("disconnect");
+            try {
+                msgText.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        // connecting
+                        if (event == 2000) {
+                            msgText.setText("connecting");
+                        }
+                        // connect success
+                        if (event == 2001) {
+                            msgText.setText("connect ok");
+                        }
+                        // connect err
+                        if (event == 2002) {
+                            msgText.setText("connect err");
+                        }
+                        // disconnect
+                        if (event == 2004) {
+                            msgText.setText("disconnect");
+                        }
+                    }
+                });
+            } catch (Exception e) {
+
             }
         });
 
